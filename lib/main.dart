@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:home_widget/home_widget.dart';
 
 void main() {
   runApp(const MyApp());
@@ -41,6 +42,26 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {
       _counter++;
     });
+
+    String title = '$_counter';
+
+    // Save the data to shared storage
+    HomeWidget.saveWidgetData<String>('headline_title', title);
+
+    // Log the saved data to check
+    print("Saved widget data: $title");
+
+    // Trigger the widget update
+    HomeWidget.updateWidget(
+      iOSName: iOSWidgetName,
+      androidName: androidWidgetName,
+    );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    HomeWidget.setAppGroupId(appGroupId); // App Group ID for shared data
   }
 
   @override
