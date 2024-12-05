@@ -6,7 +6,7 @@
 
     <TextView
         style="@style/Widget.Android.AppWidget.InnerView"
-        android:id="@+id/appwidget_text"
+        android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
