@@ -45,29 +45,29 @@ jobs:
     runs-on: macos-latest
 
     steps:
-      - name: CheckOut Code
-        uses: actions.checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-      - name: SetUP Flutter
+      - name: set up flutter
         uses: subosito/flutter-action@v2
         with:
           channel: stable
 
-      - name: Install Dependencies
+      - name: install Dependencies
         run: flutter pub get
-             sudo gem install cocoapods
+          sudo gem install cocoapods
 
-      - name: Build iOS
+      - name: build iOS app
         run: |
           flutter build ios --release --no-codesign
 
       - name: List files in iOS build directory
         run: ls -al build/ios/iphoneos/
 
-      - name: Upload IPS as Artifacts
+      - name: upload IPA as artifact
         uses: actions/upload-artifact@v3
         with:
-          name: iOS-Release
+          name: ios-release
           path: build/ios/iphoneos/Runner.app.ipa
           if-no-files-found: warn
           include-hidden-files: false
